@@ -14,7 +14,7 @@
   });
   accounts.on('add-account', function(e) {
     e.original.preventDefault();
-    var $input = $(e.node).parents('form').find('[name=name]');
+    var $input = $(e.node).find('[name=name]');
     var name = $input.val();
     $input.val('');
     accounts.get('accounts').push({name: name, balance: 0});
