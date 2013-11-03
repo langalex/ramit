@@ -1,6 +1,8 @@
 (function() {
   'use strict';
 
+  // views
+
   var accounts = new Ractive({
     el: 'accounts',
     template: $('#accounts-template').html(),
@@ -17,8 +19,23 @@
     var $input = $(e.node).find('[name=name]');
     var name = $input.val();
     $input.val('');
-    accounts.get('accounts').push({name: name, balance: 0});
+    remoteStorage.accounts.add(name);
     hasher.setHash('/');
+  });
+
+  // init
+
+  Ramith.Storage.init();
+  remoteStorage.access.claim('accounts', 'rw');
+  remoteStorage.caching.enable('/accounts/');
+  remoteStorage.displayWidget();
+  remoteStorage.accounts.onChange(function(e) {
+    if(e.oldValue === undefined) {
+      accounts.get('accounts').push(e.newValue);
+    }
+  });
+  remoteStorage.accounts.list().then(function(storedAccounts) {
+    accounts.set('accounts', storedAccounts);
   });
 
   // routes
