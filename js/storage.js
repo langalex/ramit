@@ -42,6 +42,12 @@
                 name: name
               });
             },
+            remove: function(id) {
+              privateClient.remove(id);
+            },
+            get: function(id) {
+              return privateClient.getObject(id);
+            },
             onChange: function (callback) {
               privateClient.on('change', callback);
             }
