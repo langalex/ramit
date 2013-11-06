@@ -1,6 +1,13 @@
 (function() {
   'use strict';
 
+  // misc
+
+  // close collapse navbar when clicking on a link inside of it
+  $(document).on('click', '.navbar-collapse.in a', function() {
+    $(this).parents('.navbar-collapse.in').removeClass('in').addClass('collapse');
+  });
+
   // views
 
   var accounts = new Ractive({
@@ -29,8 +36,8 @@
     e.original.preventDefault();
     if(confirm('Remove ' + e.context.name + '?')) {
       remoteStorage.accounts.remove(e.context.id);
+      hasher.setHash('');
     }
-    hasher.setHash('');
   });
 
   // init
