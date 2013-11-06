@@ -47,19 +47,19 @@
         {{/route == 'new_account'}}
 
         {{#route == 'accounts'}}
-          <table class="table table-striped">
-            <tbody>
+          {{#any(accounts)}}
+            <ul class="nav nav-tabs nav-stacked">
               {{#accounts}}
-                <tr>
-                  <th><a href="#accounts/{{id}}">{{name}}</a></th>
-                  <td>{{balance}}</td>
-                </tr>
+                <li><a href="#accounts/{{id}}">{{name}}</a></li>
               {{/accounts}}
-              {{^any(accounts)}}
-                <tr><td>Please <a href="#accounts/new">add an account</a>.</td></tr>
-              {{/any(accounts)}}
-            </tbody>
-          </table>
+            </ul>
+          {{/any(accounts)}}
+          {{^any(accounts)}}
+            <div class="alert alert-warning alert-block">
+              <h4>No Accounts</h4>
+              Please <a href="#accounts/new">add an account</a>.
+            </div>
+          {{/any(accounts)}}
         {{/route == 'accounts'}}
 
         {{#route == 'account'}}
