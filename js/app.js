@@ -18,6 +18,15 @@
       accounts: [],
       new_transaction: {},
       new_account: {},
+      sort: function(list, key, desc) {
+        var sorted = _(list).sortBy(key);
+        if(desc == 'desc') {
+          return _(sorted).reverse();
+        } else {
+          return sorted;
+        }
+        return ;
+      },
       any: function (list) {
         return(!!(list && list.length));
       },

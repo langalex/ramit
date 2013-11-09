@@ -61,9 +61,9 @@
         {{#route === 'accounts'}}
           {{#any(accounts)}}
             <div class="list-group">
-              {{#accounts}}
+              {{#sort(accounts, 'name')}}
                 <a class="list-group-item" href="#accounts/{{id}}">{{name}}</a>
-              {{/accounts}}
+              {{/sort(accounts, 'name')}}
             </div>
           {{/any(accounts)}}
           {{^any(accounts)}}
@@ -92,7 +92,7 @@
                     </div>
                   </div>
                 </div>
-                {{#currentAccount.transactions}}
+                {{#sort(currentAccount.transactions, 'date', 'desc')}}
                   <a class="list-group-item" href="#accounts/{{currentAccount.id}}/transactions/{{id}}">
                     <div class="row">
                       <div class="col-xs-10">
@@ -103,7 +103,7 @@
                       </div>
                     </div>
                   </a>
-                {{/currentAccount.transactions}}
+                {{/sort(currentAccount.transactions, 'date', 'desc')}}
               </div>
             {{/any(currentAccount.transactions)}}
             {{^any(currentAccount.transactions)}}
