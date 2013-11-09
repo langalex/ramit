@@ -37,13 +37,14 @@
         <div class="navbar-collapse collapse" id="main-nav">
           <ul class="nav navbar-nav navbar-right">
             {{#currentTransaction}}
-              <li><a href="#" on-click="remove-transaction">Remove Transaction</a></li>
+              <li><a href="#" on-click="remove-transaction">
+                <span class="glyphicon glyphicon-remove"></span> Remove Transaction</a></li>
             {{/currentTransaction}}
             {{#currentAccount}}
-              <li><a href="#/accounts/{{currentAccount.id}}/transactions/new">Add Transaction</a></li>
-              <li><a href="#" on-click="remove-account">Remove Account</a></li>
+              <li><a href="#/accounts/{{currentAccount.id}}/transactions/new"><span class="glyphicon glyphicon-plus"></span> Add Transaction</a></li>
+              <li><a href="#" on-click="remove-account"><span class="glyphicon glyphicon-remove"></span> Remove Account</a></li>
             {{/currentAccount}}
-            <li><a href="#accounts/new">Add Account</a></li>
+            <li><a href="#accounts/new"><span class="glyphicon glyphicon-plus"></span> Add Account</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </nav>
@@ -59,7 +60,7 @@
               </div>
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-primary">Add Account</button>
+                  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add Account</button>
                   <a href="#" class="btn btn-default">Cancel</a>
                 </div>
               </div>
@@ -143,7 +144,7 @@
                       <label for="transaction-amount">Amount</label>
                       <input value="{{new_transaction.amount}}" required class="form-control" id="amount" name="transaction-amount" type="number" step="1" />
                     </div>
-                    <button type="submit" class="btn btn-primary">Add Transaction</button>
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add Transaction</button>
                     <a href="#/accounts/{{currentAccount.id}}" class="btn btn-default">Cancel</a>
                   </fieldset>
                 </form>
