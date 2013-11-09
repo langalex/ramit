@@ -22,6 +22,9 @@ window.Ramith.Routes = function(app, remoteStorage) {
       app.set('currentAccount', account);
       remoteStorage.ramith.listTransactions(id).then(function(transactions) {
         app.set('currentAccount.transactions', transactions);
+        app.set('currentAccount.balance', _(transactions).reduce(function(memo, t) {
+          return memo + t.amount;
+        }, 0));
       });
       app.set('route', 'account');
     });

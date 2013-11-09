@@ -27,14 +27,14 @@
         </div>
         <div class="navbar-collapse collapse" id="main-nav">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#accounts/new">Add Account</a></li>
-            {{#currentAccount}}
-              <li><a href="#" on-click="remove-account">Remove Account</a></li>
-              <li><a href="#/accounts/{{currentAccount.id}}/transactions/new">Add Transaction</a></li>
-            {{/currentAccount}}
             {{#currentTransaction}}
               <li><a href="#" on-click="remove-transaction">Remove Transaction</a></li>
             {{/currentTransaction}}
+            {{#currentAccount}}
+              <li><a href="#/accounts/{{currentAccount.id}}/transactions/new">Add Transaction</a></li>
+              <li><a href="#" on-click="remove-account">Remove Account</a></li>
+            {{/currentAccount}}
+            <li><a href="#accounts/new">Add Account</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </nav>
@@ -60,11 +60,11 @@
 
         {{#route === 'accounts'}}
           {{#any(accounts)}}
-            <ul class="nav nav-tabs nav-stacked">
+            <div class="list-group">
               {{#accounts}}
-                <li><a href="#accounts/{{id}}">{{name}}</a></li>
+                <a class="list-group-item" href="#accounts/{{id}}">{{name}}</a>
               {{/accounts}}
-            </ul>
+            </div>
           {{/any(accounts)}}
           {{^any(accounts)}}
             <div class="alert alert-warning alert-block">
@@ -80,31 +80,39 @@
               <a href="#" class="close">&times;</a>
               <h3 class="panel-title">{{currentAccount.name}}</h3>
             </div>
-            <div class="panel-body">
-              {{#any(currentAccount.transactions)}}
-                <ul class="nav nav-tabs nav-stacked">
-                  {{#currentAccount.transactions}}
-                    <li>
-                      <a href="#accounts/{{currentAccount.id}}/transactions/{{id}}">
-                        <div class="row">
-                          <div class="col-xs-10">
-                            {{description}}
-                          </div>
-                          <div class="col-xs-2 amount">
-                            {{amount}}
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                  {{/currentAccount.transactions}}
-                </ul>
-              {{/any(currentAccount.transactions)}}
-              {{^any(currentAccount.transactions)}}
+            {{#any(currentAccount.transactions)}}
+              <div class="list-group">
+                <div class="list-group-item">
+                  <div class="row">
+                    <div class="col-xs-10">
+                      <strong>Balance</strong>
+                    </div>
+                    <div class="col-xs-2 amount">
+                      <strong>{{currentAccount.balance}}</strong>
+                    </div>
+                  </div>
+                </div>
+                {{#currentAccount.transactions}}
+                  <a class="list-group-item" href="#accounts/{{currentAccount.id}}/transactions/{{id}}">
+                    <div class="row">
+                      <div class="col-xs-10">
+                        {{description}}
+                      </div>
+                      <div class="col-xs-2 amount">
+                        {{amount}}
+                      </div>
+                    </div>
+                  </a>
+                {{/currentAccount.transactions}}
+              </div>
+            {{/any(currentAccount.transactions)}}
+            {{^any(currentAccount.transactions)}}
+              <div class="panel-body">
                 <div class="alert alert-warning">
                   No transactions yet. <a href="#/accounts/{{currentAccount.id}}/transactions/new">Add one.</a>
                 </div>
-              {{/any(currentAccount.transactions)}}
-            </div>
+              </div>
+            {{/any(currentAccount.transactions)}}
           </div>
         {{/route === 'account'}}
 
@@ -141,18 +149,22 @@
               <a href="#/accounts/{{currentAccount.id}}" class="close">&times;</a>
               <h3 class="panel-title">Transaction</h3>
             </div>
-            <div class="panel-body">
-              {{#currentTransaction}}
-                <dl>
+            {{#currentTransaction}}
+              <div class="list-group">
+                <div class="list-group-item">
                   <dt>Description</dt>
                   <dd>{{description}}</dd>
+                </div>
+                <div class="list-group-item">
                   <dt>Amount</dt>
                   <dd>{{amount}}</dd>
+                </div>
+                <div class="list-group-item">
                   <dt>Date</dt>
                   <dd>{{formatDate(date)}}</dd>
-                </dl>
-              {{/currentTransaction}}
-            </div>
+                </div>
+              </div>
+            {{/currentTransaction}}
           </div>
         {{/route === 'transaction'}}
       </div>
