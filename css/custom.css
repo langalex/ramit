@@ -1,4 +1,5 @@
 #remotestorage-widget {
+  position: fixed !important;
   bottom: 10px;
   top: inherit !important;
 }
