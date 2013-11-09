@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Ramit - personal accounting</title>
-    <meta name="description" content="Based on the idea that you preload an account for each area of spending and only spend as much money as you have in that account. Inspried by the book 'I will teach you to be rich' by Ramit Sethi.">
+    <meta name="description" content="Personal accunting app based on the idea that you preload an account for each area of spending and only spend as much money as you have in that account. Inspried by the book 'I will teach you to be rich' by Ramit Sethi.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="shortcut icon" href="images/favicon.png">
@@ -40,15 +40,28 @@
               <li><a href="#" on-click="remove-transaction">
                 <span class="glyphicon glyphicon-remove"></span> Remove Transaction</a></li>
             {{/currentTransaction}}
-            {{#currentAccount}}
-              <li><a href="#/accounts/{{currentAccount.id}}/transactions/new"><span class="glyphicon glyphicon-plus"></span> Add Transaction</a></li>
-              <li><a href="#" on-click="remove-account"><span class="glyphicon glyphicon-remove"></span> Remove Account</a></li>
-            {{/currentAccount}}
-            <li><a href="#accounts/new"><span class="glyphicon glyphicon-plus"></span> Add Account</a></li>
+            {{^currentTransaction}}
+              {{#currentAccount}}
+                <li><a href="#/accounts/{{currentAccount.id}}/transactions/new"><span class="glyphicon glyphicon-plus"></span> Add Transaction</a></li>
+                <li><a href="#" on-click="remove-account"><span class="glyphicon glyphicon-remove"></span> Remove Account</a></li>
+              {{/currentAccount}}
+              {{^currentAccount}}
+                <li><a href="#accounts/new"><span class="glyphicon glyphicon-plus"></span> Add Account</a></li>
+              {{/currentAccount}}
+            {{/currentTransaction}}
+            <li><a href="#help"><span class="glyphicon glyphicon-question-sign"></span> Help</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </nav>
       <div class="container" style="margin-top: 60px">
+        {{#route === 'loading'}}
+          <div class="progress progress-striped active">
+            <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+            </div>
+          </div>
+          <p>Loading app data...</p>
+        {{/route}}
+
         {{#route === 'new_account'}}
           {{#new_account}}
             <form on-submit="add-account" class="form-horizontal" role="form">
@@ -76,13 +89,26 @@
               {{/sort(accounts, 'name')}}
             </div>
           {{/any(accounts)}}
-          {{^any(accounts)}}
-            <div class="alert alert-warning alert-block">
-              <h4>No Accounts</h4>
-              Please <a href="#accounts/new">add an account</a>.
-            </div>
-          {{/any(accounts)}}
         {{/route === 'accounts'}}
+
+        {{#route === 'help'}}
+          <h4>Welcome to Ramit!</h4>
+
+          <p>Ramit is a personal accounting app inspried by the book 'I will teach you to be rich' by Ramit Sethi.</p>
+
+          <h4>How it works</h4>
+          <p>It is based on the idea that for each area of spending you preload an account with money and only spend as much of it as you have in that account.</p>
+
+          <h4>How to use</h4>
+          <p>Create one accont for each area of spending, for example <em>going out</em>, <em>clothes</em> or <em>transport</em>.</p>
+          <p>Each month you put money that you actually have in each of the account by creating a transaction with the appropriate amount.</p>
+          <p>Each time you spend money add a transaction with a negative amount to the account. As soon as the account is empty you can't spend any more money.</p>
+
+          <p><a href="#accounts/new" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add an account</a></p>
+
+          <h4>Remote Storage</h4>
+          <p>All the data you enter is stored on your device. If you want you can back it up to a server (and synchronize it with other devices) by getting a <a href="http://remotestorage.io/get/">remoteStorage</a> account and connecting it using the widget at the bottom.</p>
+        {{/route === 'help'}}
 
         {{#route === 'account'}}
           <div class="panel panel-default">
@@ -118,9 +144,14 @@
             {{/any(currentAccount.transactions)}}
             {{^any(currentAccount.transactions)}}
               <div class="panel-body">
-                <div class="alert alert-warning">
-                  No transactions yet. <a href="#/accounts/{{currentAccount.id}}/transactions/new">Add one.</a>
-                </div>
+                <h4>New account</h4>
+                <p>To get started with this account put some money in it.</p>
+                <p>
+                  <a href="#/accounts/{{currentAccount.id}}/transactions/new" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add Transaction
+                  </a>
+                </p>
               </div>
             {{/any(currentAccount.transactions)}}
           </div>

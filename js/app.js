@@ -14,7 +14,7 @@
     el: 'app',
     template: $('#app-template').html(),
     data: {
-      route: 'accounts',
+      route: 'loading',
       accounts: [],
       new_transaction: {},
       new_account: {},
@@ -39,8 +39,9 @@
 
   app.on('add-account', function(e) {
     e.original.preventDefault();
-    remoteStorage.ramit.addAccount(e.context.name);
-    hasher.setHash('');
+    remoteStorage.ramit.addAccount(e.context.name).then(function() {
+      hasher.setHash('');
+    });
   });
   app.on('remove-account', function(e) {
     e.original.preventDefault();
@@ -92,6 +93,7 @@
 
   remoteStorage.ramit.listAccounts().then(function(storedAccounts) {
     app.set('accounts', storedAccounts);
+    app.set('route', 'accounts');
   });
 
   Ramit.Routes(app, remoteStorage);

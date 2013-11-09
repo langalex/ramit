@@ -8,7 +8,17 @@ window.Ramit.Routes = function(app, remoteStorage) {
   });
 
   crossroads.addRoute('/', function() {
-    app.set('route', 'accounts');
+    remoteStorage.ramit.listAccounts().then(function(accounts) {
+      if(accounts.length) {
+        app.set('route', 'accounts');
+      } else {
+        hasher.setHash('help');
+      }
+    });
+  });
+
+  crossroads.addRoute('help', function() {
+    app.set('route', 'help');
   });
 
   crossroads.addRoute('/accounts/new', function() {

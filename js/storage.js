@@ -50,7 +50,7 @@
           privateClient.getAll('accounts/').then(function(all) {
             if(all) {
               deferred.resolve(_.chain(all).values().select(function(o) {
-                return o['@context'] === "http://remotestoragejs.com/spec/modules/ramit/account"; }).value());
+                return o && o['@context'] === "http://remotestoragejs.com/spec/modules/ramit/account"; }).value());
             } else {
               deferred.resolve([]);
             }
