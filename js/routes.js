@@ -1,6 +1,6 @@
-window.Ramith = window.Ramith || {};
+window.Ramit = window.Ramit || {};
 
-window.Ramith.Routes = function(app, remoteStorage) {
+window.Ramit.Routes = function(app, remoteStorage) {
   crossroads.routed.add(function() {
     app.set('currentAccount', null);
     app.set('currentTransaction', null);
@@ -18,9 +18,9 @@ window.Ramith.Routes = function(app, remoteStorage) {
   });
 
   crossroads.addRoute('/accounts/{id}', function(id) {
-    remoteStorage.ramith.getAccount(id).then(function(account) {
+    remoteStorage.ramit.getAccount(id).then(function(account) {
       app.set('currentAccount', account);
-      remoteStorage.ramith.listTransactions(id).then(function(transactions) {
+      remoteStorage.ramit.listTransactions(id).then(function(transactions) {
         app.set('currentAccount.transactions', transactions);
         app.set('currentAccount.balance', _(transactions).reduce(function(memo, t) {
           return memo + t.amount;
@@ -31,7 +31,7 @@ window.Ramith.Routes = function(app, remoteStorage) {
   });
 
   crossroads.addRoute('/accounts/{id}/transactions/new', function(id) {
-    remoteStorage.ramith.getAccount(id).then(function(account) {
+    remoteStorage.ramit.getAccount(id).then(function(account) {
       app.set('new_transaction', {});
       app.set('currentAccount', account);
       app.set('route', 'new_transaction');
@@ -40,9 +40,9 @@ window.Ramith.Routes = function(app, remoteStorage) {
   });
 
   crossroads.addRoute('/accounts/{account_id}/transactions/{id}', function(accountId, id) {
-    remoteStorage.ramith.getAccount(accountId).then(function(account) {
+    remoteStorage.ramit.getAccount(accountId).then(function(account) {
       app.set('currentAccount', account);
-      remoteStorage.ramith.getTransaction(accountId, id).then(function(transaction) {
+      remoteStorage.ramit.getTransaction(accountId, id).then(function(transaction) {
         app.set('currentTransaction', transaction);
       });
       app.set('route', 'transaction');

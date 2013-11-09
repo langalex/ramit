@@ -1,16 +1,16 @@
 (function() {
   'use strict';
-  window.Ramith = window.Ramith || {};
+  window.Ramit = window.Ramit || {};
 
   // views
 
-  Ramith.App = Ractive.extend({
+  Ramit.App = Ractive.extend({
     getAccount: function(id) {
       return _(this.get('accounts')).find(function(a) { return a.id === id; });
     }
   });
 
-  var app = new Ramith.App({
+  var app = new Ramit.App({
     el: 'app',
     template: $('#app-template').html(),
     data: {
@@ -39,41 +39,41 @@
 
   app.on('add-account', function(e) {
     e.original.preventDefault();
-    remoteStorage.ramith.addAccount(e.context.name);
+    remoteStorage.ramit.addAccount(e.context.name);
     hasher.setHash('');
   });
   app.on('remove-account', function(e) {
     e.original.preventDefault();
     if(confirm('Remove ' + e.context.name + '?')) {
-      remoteStorage.ramith.removeAccount(e.context.id);
+      remoteStorage.ramit.removeAccount(e.context.id);
       hasher.setHash('');
     }
   });
   app.on('add-transaction', function(e) {
     e.original.preventDefault();
     var context = e.context;
-    remoteStorage.ramith.addTransaction(app.get('currentAccount.id'), context.description, context.amount);
+    remoteStorage.ramit.addTransaction(app.get('currentAccount.id'), context.description, context.amount);
     hasher.setHash('accounts', app.get('currentAccount.id'));
   });
   app.on('remove-transaction', function(e) {
     e.original.preventDefault();
     if(confirm('Remove ' + e.context.description + '?')) {
-      remoteStorage.ramith.removeTransaction(e.context.account_id, e.context.id);
+      remoteStorage.ramit.removeTransaction(e.context.account_id, e.context.id);
       hasher.setHash('accounts', e.context.account_id);
     }
   });
 
   // init
   remoteStorage.displayWidget();
-  remoteStorage.ramith.onAddAccount(function(account) {
+  remoteStorage.ramit.onAddAccount(function(account) {
     app.get('accounts').push(account);
   });
-  remoteStorage.ramith.onRemoveAccount(function(removedAccount) {
+  remoteStorage.ramit.onRemoveAccount(function(removedAccount) {
     var account = app.getAccount(removedAccount.id);
     var index = app.get('accounts').indexOf(account);
     app.get('accounts').splice(index, 1);
   });
-  remoteStorage.ramith.onAddTransaction(function(transaction) {
+  remoteStorage.ramit.onAddTransaction(function(transaction) {
     var account = app.getAccount(transaction.account_id);
     var index = app.get('accounts').indexOf(account);
     if(account.transactions === undefined) {
@@ -81,7 +81,7 @@
     }
     app.getAccount(transaction.account_id).transactions.push(transaction);
   });
-  remoteStorage.ramith.onRemoveTransaction(function(removedTransaction) {
+  remoteStorage.ramit.onRemoveTransaction(function(removedTransaction) {
     var account = app.getAccount(removedTransaction.account_id);
     var transaction = _(account.transactions).find(function(t) { return t.id == removedTransaction.id; });
     if(account.transactions) {
@@ -90,9 +90,9 @@
     }
   });
 
-  remoteStorage.ramith.listAccounts().then(function(storedAccounts) {
+  remoteStorage.ramit.listAccounts().then(function(storedAccounts) {
     app.set('accounts', storedAccounts);
   });
 
-  Ramith.Routes(app, remoteStorage);
+  Ramit.Routes(app, remoteStorage);
 })();

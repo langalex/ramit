@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  RemoteStorage.defineModule('ramith', function(privateClient, publicClient) {
+  RemoteStorage.defineModule('ramit', function(privateClient, publicClient) {
     // Define a common data type using JSON Schema
     privateClient.declareType('account', {
       "description": "an account with a balance",
@@ -50,7 +50,7 @@
           privateClient.getAll('accounts/').then(function(all) {
             if(all) {
               deferred.resolve(_.chain(all).values().select(function(o) {
-                return o['@context'] === "http://remotestoragejs.com/spec/modules/ramith/account"; }).value());
+                return o['@context'] === "http://remotestoragejs.com/spec/modules/ramit/account"; }).value());
             } else {
               deferred.resolve([]);
             }
@@ -72,14 +72,14 @@
         },
         onAddAccount: function(callback) {
           privateClient.on('change', function(e) {
-            if(e.oldValue === undefined && e.newValue['@context'] === 'http://remotestoragejs.com/spec/modules/ramith/account') {
+            if(e.oldValue === undefined && e.newValue['@context'] === 'http://remotestoragejs.com/spec/modules/ramit/account') {
               callback(e.newValue);
             }
           });
         },
         onRemoveAccount: function(callback) {
           privateClient.on('change', function(e) {
-            if(e.newValue === undefined && e.oldValue['@context'] === 'http://remotestoragejs.com/spec/modules/ramith/account') {
+            if(e.newValue === undefined && e.oldValue['@context'] === 'http://remotestoragejs.com/spec/modules/ramit/account') {
               callback(e.oldValue);
             }
           });
@@ -115,14 +115,14 @@
         },
         onAddTransaction: function(callback) {
           privateClient.on('change', function(e) {
-            if(e.oldValue === undefined && e.newValue['@context'] === 'http://remotestoragejs.com/spec/modules/ramith/transaction') {
+            if(e.oldValue === undefined && e.newValue['@context'] === 'http://remotestoragejs.com/spec/modules/ramit/transaction') {
               callback(e.newValue);
             }
           });
         },
         onRemoveTransaction: function(callback) {
           privateClient.on('change', function(e) {
-            if(e.newValue === undefined && e.oldValue['@context'] === 'http://remotestoragejs.com/spec/modules/ramith/transaction') {
+            if(e.newValue === undefined && e.oldValue['@context'] === 'http://remotestoragejs.com/spec/modules/ramit/transaction') {
               callback(e.oldValue);
             }
           });
@@ -130,6 +130,6 @@
       }
     };
   });
-  remoteStorage.access.claim('ramith', 'rw');
-  remoteStorage.caching.enable('/ramith/');
+  remoteStorage.access.claim('ramit', 'rw');
+  remoteStorage.caching.enable('/ramit/');
 })();
