@@ -1,86 +1,89 @@
 (function() {
   'use strict';
-
-  // misc
-
-  // close collapse navbar when clicking on a link inside of it
-  $(document).on('click', '.navbar-collapse.in a', function() {
-    $(this).parents('.navbar-collapse.in').removeClass('in').addClass('collapse');
-  });
+  window.Ramith = window.Ramith || {};
 
   // views
 
-  var accounts = new Ractive({
+  Ramith.App = Ractive.extend({
+    getAccount: function(id) {
+      return _(this.get('accounts')).find(function(a) { return a.id === id; });
+    }
+  });
+
+  var app = new Ramith.App({
     el: 'app',
     template: $('#app-template').html(),
     data: {
       route: 'accounts',
       accounts: [],
+      new_transaction: {},
+      new_account: {},
       any: function (list) {
-        return list.length;
+        return(!!(list && list.length));
+      },
+      formatDate: function(timestamp) {
+        var d = new Date(timestamp);
+        return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
       }
     }
   });
-  accounts.on('close', function(e) {
-    hasher.setHash('');
-  });
-  accounts.on('add-account', function(e) {
+
+  app.on('add-account', function(e) {
     e.original.preventDefault();
-    var $input = $(e.node).find('[name=name]');
-    var name = $input.val();
-    $input.val('');
-    remoteStorage.accounts.add(name);
+    remoteStorage.ramith.addAccount(e.context.name);
     hasher.setHash('');
   });
-  accounts.on('remove-account', function(e) {
+  app.on('remove-account', function(e) {
     e.original.preventDefault();
     if(confirm('Remove ' + e.context.name + '?')) {
-      remoteStorage.accounts.remove(e.context.id);
+      remoteStorage.ramith.removeAccount(e.context.id);
       hasher.setHash('');
+    }
+  });
+  app.on('add-transaction', function(e) {
+    e.original.preventDefault();
+    var context = e.context;
+    remoteStorage.ramith.addTransaction(app.get('currentAccount.id'), context.description, context.amount);
+    hasher.setHash('accounts', app.get('currentAccount.id'));
+  });
+  app.on('remove-transaction', function(e) {
+    e.original.preventDefault();
+    if(confirm('Remove ' + e.context.description + '?')) {
+      remoteStorage.ramith.removeTransaction(e.context.account_id, e.context.id);
+      hasher.setHash('accounts', e.context.account_id);
     }
   });
 
   // init
-
-  Ramith.Storage.init();
-  remoteStorage.access.claim('accounts', 'rw');
-  remoteStorage.caching.enable('/accounts/');
   remoteStorage.displayWidget();
-  remoteStorage.accounts.onChange(function(e) {
-    if(e.oldValue === undefined) { // add
-      accounts.get('accounts').push(e.newValue);
-    } else if(e.newValue === undefined) { // remove
-      var account = _(accounts.get('accounts')).find(function(a) { return a.id === e.oldValue.id; });
-      var index = accounts.get('accounts').indexOf(account);
-      accounts.get('accounts').splice(index, 1);
+  remoteStorage.ramith.onAddAccount(function(account) {
+    app.get('accounts').push(account);
+  });
+  remoteStorage.ramith.onRemoveAccount(function(removedAccount) {
+    var account = app.getAccount(removedAccount.id);
+    var index = app.get('accounts').indexOf(account);
+    app.get('accounts').splice(index, 1);
+  });
+  remoteStorage.ramith.onAddTransaction(function(transaction) {
+    var account = app.getAccount(transaction.account_id);
+    var index = app.get('accounts').indexOf(account);
+    if(account.transactions === undefined) {
+      app.set('accounts[' + index + '].transactions', []);
+    }
+    app.getAccount(transaction.account_id).transactions.push(transaction);
+  });
+  remoteStorage.ramith.onRemoveTransaction(function(removedTransaction) {
+    var account = app.getAccount(removedTransaction.account_id);
+    var transaction = _(account.transactions).find(function(t) { return t.id == removedTransaction.id; });
+    if(account.transactions) {
+      var index = account.transactions.indexOf(transaction);
+      account.transactions.splice(index, 1);
     }
   });
-  remoteStorage.accounts.list().then(function(storedAccounts) {
-    accounts.set('accounts', storedAccounts);
+
+  remoteStorage.ramith.listAccounts().then(function(storedAccounts) {
+    app.set('accounts', storedAccounts);
   });
 
-  // routes
-
-  crossroads.addRoute('/', function() {
-    accounts.set('route', 'accounts');
-  });
-
-  crossroads.addRoute('/accounts/new', function() {
-    accounts.set('route', 'new_account');
-  });
-
-  crossroads.addRoute('/accounts/{id}', function(id) {
-    remoteStorage.accounts.get(id).then(function(account) {
-      accounts.set('currentAccount', account);
-      accounts.set('route', 'account');
-    });
-  });
-
-  function handleChanges(newHash, oldHash){
-    crossroads.parse(newHash);
-  }
-
-  hasher.changed.add(handleChanges);
-  hasher.initialized.add(handleChanges);
-  hasher.init();
+  Ramith.Routes(app, remoteStorage);
 })();

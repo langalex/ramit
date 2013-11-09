@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Ramith - personal accounting</title>
+    <meta name="description" content="Based on the idea that you preload an account for each area of spending and only spend as much money as you have in that account. Inspried by the book 'I will teach you to be rich'.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="css/custom.css" rel="stylesheet" media="screen">
@@ -17,36 +18,47 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Ramith</a>
+          <a class="navbar-brand" href="#">
+            Ramith
+            {{#currentAccount}}
+              | {{currentAccount.name}}
+            {{/currentAccount}}
+          </a>
         </div>
-        <div class="navbar-collapse collapse">
+        <div class="navbar-collapse collapse" id="main-nav">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#accounts/new">Add Account</a></li>
             {{#currentAccount}}
               <li><a href="#" on-click="remove-account">Remove Account</a></li>
+              <li><a href="#/accounts/{{currentAccount.id}}/transactions/new">Add Transaction</a></li>
             {{/currentAccount}}
+            {{#currentTransaction}}
+              <li><a href="#" on-click="remove-transaction">Remove Transaction</a></li>
+            {{/currentTransaction}}
           </ul>
         </div><!--/.nav-collapse -->
       </nav>
       <div class="container" style="margin-top: 60px">
-        {{#route == 'new_account'}}
-          <form on-submit="add-account" class="form-horizontal" role="form">
-            <div class="form-group">
-              <label class="col-sm-2 control-label" for="account-name">Name</label>
-              <div class="col-sm-10">
-                <input required id="account-name" class="form-control" type="text" name="name" placeholder="Name" />
+        {{#route === 'new_account'}}
+          {{#new_account}}
+            <form on-submit="add-account" class="form-horizontal" role="form">
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="account-name">Name</label>
+                <div class="col-sm-10">
+                  <input required id="account-name" value="{{new_account.name}}" class="form-control" type="text" placeholder="Name" />
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary">Add Account</button>
-                <a href="#" class="btn btn-default">Cancel</a>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-primary">Add Account</button>
+                  <a href="#" class="btn btn-default">Cancel</a>
+                </div>
               </div>
-            </div>
-          </form>
-        {{/route == 'new_account'}}
+            </form>
+          {{/new_account}}
+        {{/route === 'new_account'}}
 
-        {{#route == 'accounts'}}
+        {{#route === 'accounts'}}
           {{#any(accounts)}}
             <ul class="nav nav-tabs nav-stacked">
               {{#accounts}}
@@ -60,25 +72,89 @@
               Please <a href="#accounts/new">add an account</a>.
             </div>
           {{/any(accounts)}}
-        {{/route == 'accounts'}}
+        {{/route === 'accounts'}}
 
-        {{#route == 'account'}}
+        {{#route === 'account'}}
           <div class="panel panel-default">
             <div class="panel-heading">
-              <button type="button" class="close" aria-hidden="true" on-click="close">&times;</button>
+              <a href="#" class="close">&times;</a>
               <h3 class="panel-title">{{currentAccount.name}}</h3>
             </div>
             <div class="panel-body">
-              <form class="form-inline">
-                <fieldset legend="Add Transaction">
-                  <input type="text" placeholder="Title"/>
-                  <input type="text" placeholder="Amount" type="number"/>
-                  <button type="submit">Add Transaction</button>
-                </fieldset>
-              </form>
+              {{#any(currentAccount.transactions)}}
+                <ul class="nav nav-tabs nav-stacked">
+                  {{#currentAccount.transactions}}
+                    <li>
+                      <a href="#accounts/{{currentAccount.id}}/transactions/{{id}}">
+                        <div class="row">
+                          <div class="col-xs-10">
+                            {{description}}
+                          </div>
+                          <div class="col-xs-2 amount">
+                            {{amount}}
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  {{/currentAccount.transactions}}
+                </ul>
+              {{/any(currentAccount.transactions)}}
+              {{^any(currentAccount.transactions)}}
+                <div class="alert alert-warning">
+                  No transactions yet. <a href="#/accounts/{{currentAccount.id}}/transactions/new">Add one.</a>
+                </div>
+              {{/any(currentAccount.transactions)}}
             </div>
           </div>
-        {{/route == 'account'}}
+        {{/route === 'account'}}
+
+        {{#route === 'new_transaction'}}
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <a href="#/accounts/{{currentAccount.id}}" class="close">&times;</a>
+              <h3 class="panel-title">Add Transaction</h3>
+            </div>
+            <div class="panel-body">
+              {{#new_transaction}}
+                <form role="form" on-submit="add-transaction">
+                  <fieldset>
+                    <div class="form-group">
+                      <label for="transaction-description">Description</label>
+                      <input value="{{new_transaction.description}}" required class="form-control" id="transaction-description" name="description" type="text"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="transaction-amount">Amount</label>
+                      <input value="{{new_transaction.amount}}" required class="form-control" id="amount" name="transaction-amount" type="number" step="1" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Transaction</button>
+                    <a href="#/accounts/{{currentAccount.id}}" class="btn btn-default">Cancel</a>
+                  </fieldset>
+                </form>
+              {{/new_transaction}}
+            </div>
+          </div>
+        {{/route === 'new_transaction'}}
+
+        {{#route === 'transaction'}}
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <a href="#/accounts/{{currentAccount.id}}" class="close">&times;</a>
+              <h3 class="panel-title">Transaction</h3>
+            </div>
+            <div class="panel-body">
+              {{#currentTransaction}}
+                <dl>
+                  <dt>Description</dt>
+                  <dd>{{description}}</dd>
+                  <dt>Amount</dt>
+                  <dd>{{amount}}</dd>
+                  <dt>Date</dt>
+                  <dd>{{formatDate(date)}}</dd>
+                </dl>
+              {{/currentTransaction}}
+            </div>
+          </div>
+        {{/route === 'transaction'}}
       </div>
     </script>
     <script src="js/vendor/jquery.js"></script>
@@ -87,9 +163,10 @@
     <script src="js/vendor/hasher.js"></script>
     <script src="js/vendor/crossroads.js"></script>
     <script src="js/vendor/ractive.js"></script>
-    <script src="js/vendor/remotestorage.min.js"></script>
+    <script src="js/vendor/remotestorage.js"></script>
     <script src="js/vendor/underscore.js"></script>
     <script src="js/storage.js"></script>
+    <script src="js/routes.js"></script>
     <script src="js/app.js"></script>
   </body>
 </html>
