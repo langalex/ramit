@@ -24,7 +24,7 @@ get '/tests.js' do
 end
 
 def javascripts
-  ['vendor/jquery.js', 'vendor/handlebars.js', 'vendor/ember.js', 'vendor/ember_data.js',
+  ['vendor/jquery.js', 'vendor/handlebars.js', 'vendor/ember.js',
     'vendor/bootstrap.js', 'vendor/remotestorage.js', 'vendor/underscore.js', 'storage.js',
     'app.js', 'models.js', 'controllers.js', 'routes.js'].map do |file|
     File.read("js/#{file}")

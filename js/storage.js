@@ -58,11 +58,13 @@
           return deferred.promise();
         },
         addAccount: function (name) {
+          var d = $.Deferred();
           var id = new Date().getTime().toString();
-          return privateClient.storeObject('account', 'accounts/' + id, {
-            id: id,
-            name: name
+          var data = {id: id, name: name};
+          privateClient.storeObject('account', 'accounts/' + id, data).then(function() {
+            d.resolve(data);
           });
+          return d.promise();
         },
         removeAccount: function(id) {
           privateClient.remove('accounts/' + id);
@@ -99,13 +101,18 @@
         },
         addTransaction: function(accountId, description, amount) {
           var id = new Date().getTime().toString();
-          return privateClient.storeObject('transaction', 'accounts/' + accountId + '/transactions/' + id, {
+          var transaction = {
             id: id,
             account_id: accountId,
             description: description,
             amount: amount,
             date: new Date().getTime()
-          });
+          };
+
+          privateClient.storeObject('transaction', 'accounts/' + accountId + '/transactions/' + id, transaction);
+          var d = $.Deferred();
+          d.resolve(transaction);
+          return d.promise();
         },
         getTransaction: function(accountId, id) {
           return privateClient.getObject('accounts/' + accountId + '/transactions/' + id);

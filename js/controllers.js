@@ -4,11 +4,13 @@
   App.NewAccountController = Ember.Controller.extend({
     actions: {
       createAccount: function() {
-        this.get('store').createRecord('account', {
-          name: this.get('name')}
-        );
+        var controller = this;
+        var account = App.Account.create({
+          name: this.get('name')});
         this.set('name', undefined);
-        this.transitionToRoute('accounts');
+        account.save().then(function() {
+          controller.transitionToRoute('accounts');
+        });
       }
     }
   });
@@ -27,9 +29,9 @@
         var account = this.get('model');
         var transaction = this.store.createRecord('transaction', {
           account: account,
-          date: new Date(),
           description: this.get('description'),
           amount: parseInt(this.get('amount'), 10)});
+        transaction.save();
         account.get('transactions').pushObject(transaction);
         this.setProperties({description: undefined, amount: undefined});
         this.transitionToRoute('account', this.get('model'));
