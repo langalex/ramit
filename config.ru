@@ -1,1 +1,3 @@
-run Rack::Directory.new('')
+require './app'
+
+run Sinatra::Application

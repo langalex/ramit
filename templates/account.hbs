@@ -1,0 +1,53 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <a href="#" class="close">&times;</a>
+    <h3 class="panel-title">{{model.name}}</h3>
+  </div>
+  {{#if controller.transactions}}
+    <div class="list-group">
+      <div class="list-group-item">
+        <div class="row">
+          <div class="col-xs-10">
+            <strong>Balance</strong>
+          </div>
+          <div class="col-xs-2 amount">
+            <strong>{{model.balance}}</strong>
+          </div>
+        </div>
+      </div>
+      <div class="list-group-item">
+        <p>
+          {{#link-to 'new_transaction' this class="add-transaction btn btn-primary"}}
+            <span class="glyphicon glyphicon-plus"></span>
+            Add Transaction
+          {{/link-to}}
+        </p>
+      </div>
+      <div class="transactions">
+        {{#each controller.transactions}}
+          {{#link-to 'transaction' this class="list-group-item transaction"}}
+            <div class="row">
+              <div class="col-xs-10">
+                {{description}}
+              </div>
+              <div class="col-xs-2 amount">
+                {{amount}}
+              </div>
+            </div>
+          {{/link-to}}
+        {{/each}}
+      </div>
+    </div>
+  {{else}}
+    <div class="panel-body">
+      <h4>New account</h4>
+      <p>To get started with this account put some money in it.</p>
+      <p>
+        {{#link-to 'new_transaction' this class="btn btn-primary add-transaction"}}
+          <span class="glyphicon glyphicon-plus"></span>
+          Add Transaction
+        {{/link-to}}
+      </p>
+    </div>
+  {{/if}}
+</div>
