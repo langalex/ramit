@@ -67,7 +67,10 @@
   // init
   remoteStorage.displayWidget();
   remoteStorage.ramit.onAddAccount(function(account) {
-    app.get('accounts').push(account);
+    if(!_(app).find(function(a) { return a.id == account.id; })) {
+      app.get('accounts').push(account);
+    }
+
   });
   remoteStorage.ramit.onRemoveAccount(function(removedAccount) {
     var account = app.getAccount(removedAccount.id);
