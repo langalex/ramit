@@ -10,6 +10,12 @@ This is a standalone, offline HTML5 app, just open `index.html` in a browser.
 
 The offical version is hosted at http://ramit.5apps.com.
 
+### Deployment
+
+Build the app with `ember build`. Deploy the `dist` directory:
+
+    git subtree push --prefix dist <deploy remote> master
+
 ### Acknowledgements
 
 Icons by [Glyphicons](http://glyphicons.com/)
