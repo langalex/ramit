@@ -1,0 +1,18 @@
+<div class="list-group">
+  {{#each content}}
+    {{#link-to 'account' this class="list-group-item account"}}
+      <div class="row">
+        <div class="col-xs-10">
+          {{name}}
+        </div>
+        <div class="col-xs-2 amount">
+          {{balance}}
+        </div>
+      </div>
+    {{/link-to}}
+  {{/each}}
+</div>
+
+{{#link-to 'new_account' class="add-account btn btn-default pull-right"}}
+  <span class="glyphicon glyphicon-plus"></span> Add Account
+{{/link-to}}
