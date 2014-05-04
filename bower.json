@@ -14,6 +14,7 @@
     "ember-load-initializers": "stefanpenner/ember-load-initializers#0.0.1",
     "underscore": "~1.5.2",
     "remotestorage": "0.10.0-beta2",
-    "bootstrap": "~3.0.1"
+    "bootstrap": "~3.0.1",
+    "fastclick": "~1.0.1"
   }
 }

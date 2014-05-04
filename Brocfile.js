@@ -8,6 +8,7 @@ var app = new EmberApp({
   legacyFilesToAppend: [
     'remotestorage.js',
     'underscore.js',
+    'fastclick.js',
     'jquery.js',
     'handlebars.js',
     'ember.js',
