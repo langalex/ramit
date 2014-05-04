@@ -1,3 +1,11 @@
-html, body {
-  margin: 20px;
+#remotestorage-widget {
+  top: 5px !important;
+}
+
+.container {
+  margin-top: 60px;
+}
+
+.back {
+  background: #e8e8e8;
 }
