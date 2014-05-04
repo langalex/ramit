@@ -6,6 +6,6 @@ export default Ember.Controller.extend({
     }
   },
   sortedTransactions: function() {
-    return this.get('model.transactions').sortBy('date');
+    return this.get('model.transactions').sortBy('date').reverse();
   }.property('model.transactions.@each')
 });

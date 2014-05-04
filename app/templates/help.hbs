@@ -1,20 +1,23 @@
-<h4>Welcome to Ramit!</h4>
+{{nav-bar title="Help" back-route="accounts"}}
+<div class="container">
+  <h4>Welcome to Ramit!</h4>
 
-<p>Ramit is a personal accounting app inspried by the book 'I will teach you to be rich' by Ramit Sethi.</p>
+  <p>Ramit is a personal accounting app inspried by the book 'I will teach you to be rich' by Ramit Sethi.</p>
 
-<h4>How it works</h4>
-<p>It is based on the idea that for each area of spending you preload an account with money and only spend as much of it as you have in that account.</p>
+  <h4>How it works</h4>
+  <p>It is based on the idea that for each area of spending you preload an account with money and only spend as much of it as you have in that account.</p>
 
-<h4>How to use</h4>
-<p>Create one account for each area of spending, for example <em>going out</em>, <em>clothes</em> or <em>transport</em>.</p>
-<p>Each month you put money that you actually have in each of the account by creating a transaction with the appropriate amount.</p>
-<p>Each time you spend money add a transaction with a negative amount to the account. As soon as the account is empty you cannot spend any more money.</p>
+  <h4>How to use</h4>
+  <p>Create one account for each area of spending, for example <em>going out</em>, <em>clothes</em> or <em>transport</em>.</p>
+  <p>Each month you put money that you actually have in each of the account by creating a transaction with the appropriate amount.</p>
+  <p>Each time you spend money add a transaction with a negative amount to the account. As soon as the account is empty you cannot spend any more money.</p>
 
-<p>
-  {{#link-to 'new_account' class="btn btn-primary" }}
-    <span class="glyphicon glyphicon-plus"></span> Add an account
-  {{/link-to}}
-</p>
+  <p>
+    {{#link-to 'new_account' class="btn btn-primary" }}
+      <span class="glyphicon glyphicon-plus"></span> Add an account
+    {{/link-to}}
+  </p>
 
-<h4>Remote Storage</h4>
-<p>All the data you enter is stored on your device. If you want you can back it up to a server (and synchronize it with other devices) by getting a <a href="http://remotestorage.io/get/">remoteStorage</a> account and connecting it using the widget at the bottom.</p>
+  <h4>Remote Storage</h4>
+  <p>All the data you enter is stored on your device. If you want you can back it up to a server (and synchronize it with other devices) by getting a <a href="http://remotestorage.io/get/">remoteStorage</a> account and connecting it using the widget at the bottom.</p>
+</div>
