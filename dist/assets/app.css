@@ -6,6 +6,6 @@
   margin-top: 60px;
 }
 
-.back {
+.back, .back:visited, .back:active {
   background: #e8e8e8;
 }
