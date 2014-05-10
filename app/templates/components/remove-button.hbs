@@ -1,0 +1,16 @@
+<div class="btn-group">
+  {{#if showConfirm}}
+    <a href="#" {{action 'toggleConfirm'}} class="btn btn-default">
+      Cancel
+    </a>
+    <a href="#" {{action 'sendDelete'}} class="btn btn-danger">
+      <span class="glyphicon glyphicon-remove"></span>
+      {{confirm-label}}
+    </a>
+  {{else}}
+    <a href="#" {{action 'toggleConfirm'}} class="btn btn-default">
+      <span class="glyphicon glyphicon-remove"></span>
+      {{remove-label}}
+    </a>
+  {{/if}}
+</div>

@@ -14,9 +14,9 @@
       <dd>{{format-date model.date}}</dd>
     </div>
   </div>
-  <p class="clearfix">
-    <a href="#" class="btn btn-danger remove-transaction pull-right" {{action 'deleteTransaction'}}>
-      <span class="glyphicon glyphicon-remove"></span> Remove Transaction
-    </a>
-  </p>
+
+  <div class="pull-right">
+    {{remove-button remove-label="Remove Transaction..." confirm-label="Confirm Remove Transaction" action="deleteTransaction"}}
+  </div>
+  <p class="clearfix"></p>
 </div>
