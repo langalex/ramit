@@ -34,7 +34,12 @@ Account.reopenClass({
 });
 
 remoteStorage.ramit.onAddAccount(function(accountData) {
-  Account.all.pushObject(Account.create(accountData));
+  var existing = Account.all.find(function(a) { return a.get('id') === accountData.id; });
+  if(existing) {
+    existing.setProperties(accountData);
+  } else {
+    Account.all.pushObject(Account.create(accountData));
+  }
 });
 
 remoteStorage.ramit.onRemoveAccount(function(accountData) {

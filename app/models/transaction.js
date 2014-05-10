@@ -22,7 +22,12 @@ Transaction.reopenClass({
 });
 
 remoteStorage.ramit.onAddTransaction(function(transactionData) {
-  Transaction.all.pushObject(Transaction.create(transactionData));
+  var existing = Transaction.all.find(function(a) { return a.get('id') === transactionData.id; });
+  if(existing) {
+    existing.setProperties(transactionData);
+  } else {
+    Transaction.all.pushObject(Transaction.create(transactionData));
+  }
 });
 
 remoteStorage.ramit.onRemoveTransaction(function(transactionData) {
