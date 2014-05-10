@@ -1,5 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="navbar-header">
+    {{yield}}
     {{#if back-route}}
       {{#if back-model}}
         {{link-to "&laquo;" back-route back-model class="navbar-brand back"}}

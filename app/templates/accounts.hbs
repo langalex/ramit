@@ -1,4 +1,8 @@
-{{nav-bar}}
+{{#nav-bar}}
+  {{#link-to "new_account" class="navbar-brand"}}
+    <span class="glyphicon glyphicon-plus"></span>
+  {{/link-to}}
+{{/nav-bar}}
 <div class="container">
   <div class="list-group">
     {{#each content}}
@@ -10,10 +14,4 @@
       {{/link-to}}
     {{/each}}
   </div>
-
-  <p class="clearfix">
-    {{#link-to 'new_account' class="add-account btn btn-default pull-right"}}
-      <span class="glyphicon glyphicon-plus"></span> Add Account
-    {{/link-to}}
-  </p>
 </div>

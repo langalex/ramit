@@ -9,3 +9,12 @@
 .back, .back:visited, .back:active, .back:hover {
   background: #e8e8e8 !important;
 }
+
+.btn-primary {
+  background: rgb(144, 63, 43);
+  border-color: rgb(124, 43, 23);
+}
+
+.btn-primary:hover {
+  background: rgb(124, 43, 23) !important;
+}
