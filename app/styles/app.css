@@ -6,6 +6,6 @@
   margin-top: 60px;
 }
 
-.back, .back:visited, .back:active {
-  background: #e8e8e8;
+.back, .back:visited, .back:active, .back:hover {
+  background: #e8e8e8 !important;
 }
