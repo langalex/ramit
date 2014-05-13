@@ -1,18 +1,21 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="navbar-header">
-    {{yield}}
-    {{#if back-route}}
-      {{#if back-model}}
-        {{link-to "&laquo;" back-route back-model class="navbar-brand back"}}
-      {{else}}
-        {{link-to "&laquo;" back-route class="navbar-brand back"}}
+    <div class="navbar-brand">
+      {{yield}}
+      {{#if back-route}}
+        {{#if back-model}}
+          {{#link-to back-route back-model}}
+            <span class="fa fa-chevron-left"></span>
+          {{/link-to}}
+        {{else}}
+          {{#link-to back-route}}
+            <span class="fa fa-chevron-left"></span>
+          {{/link-to}}
+        {{/if}}
       {{/if}}
-    {{/if}}
-    <span class="navbar-brand">
-      {{title}}
-    </span>
-    <p class="navbar-text">
-      <a href="#help" class="navbar-link"><span class="glyphicon glyphicon-question-sign"></span></a>
-    </p>
+      <span class="navbar-title">
+        {{title}}
+      </span>
+    </div>
   </div>
 </nav>
