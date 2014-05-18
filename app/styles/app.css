@@ -24,9 +24,8 @@ a {
   padding: 0;
 }
 
-.navbar-brand > a, .navbar-brand > span {
-  display: inline-block;
-  padding: 15px;
+.navbar-brand > a, .navbar-brand > div {
+
 }
 
 .navbar a, .navbar a:hover, .navbar a:active {
@@ -39,9 +38,13 @@ a {
 }
 
 .navbar-title {
-  width: 50%;
-  text-align: right;
+  width: 100%;
+  text-align: center;
+  padding: 15px;
+}
 
+.navbar-title .title-link {
+  float: left;
 }
 
 .footer {

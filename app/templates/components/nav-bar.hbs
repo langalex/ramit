@@ -1,21 +1,23 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="navbar-header">
     <div class="navbar-brand">
-      {{yield}}
-      {{#if back-route}}
-        {{#if back-model}}
-          {{#link-to back-route back-model}}
-            <span class="fa fa-chevron-left"></span>
-          {{/link-to}}
-        {{else}}
-          {{#link-to back-route}}
-            <span class="fa fa-chevron-left"></span>
-          {{/link-to}}
-        {{/if}}
-      {{/if}}
-      <span class="navbar-title">
+      <div class="navbar-title">
+        <div class="title-link">
+          {{yield}}
+          {{#if back-route}}
+            {{#if back-model}}
+              {{#link-to back-route back-model}}
+                <span class="fa fa-chevron-left"></span>
+              {{/link-to}}
+            {{else}}
+              {{#link-to back-route}}
+                <span class="fa fa-chevron-left"></span>
+              {{/link-to}}
+            {{/if}}
+          {{/if}}
+        </div>
         {{title}}
-      </span>
+      </div>
     </div>
   </div>
 </nav>
