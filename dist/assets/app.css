@@ -31,6 +31,7 @@ a {
 .navbar a, .navbar a:hover, .navbar a:active {
   color: inherit;
   text-decoration: none;
+  padding: 15px;
 }
 
 .navbar-header, .navbar-brand {
@@ -40,11 +41,13 @@ a {
 .navbar-title {
   width: 100%;
   text-align: center;
-  padding: 15px;
+  padding: 15px 0;
 }
 
 .navbar-title .title-link {
-  float: left;
+  position: absolute;
+  top: 15px;
+  left: 0;
 }
 
 .footer {
