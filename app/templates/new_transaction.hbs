@@ -10,8 +10,9 @@
         <label for="amount">Amount</label>
         {{input value=amount required="required" class="form-control" id="amount" type="number" step="1"}}
       </div>
-      <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add Transaction</button>
-      {{link-to 'Cancel' 'account' model class="btn btn-default"}}
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary form-control"><span class="glyphicon glyphicon-plus"></span> Add Transaction</button>
+      </div>
     </fieldset>
   </form>
 </div>
