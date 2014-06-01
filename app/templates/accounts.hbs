@@ -4,17 +4,21 @@
   {{/link-to}}
 {{/nav-bar}}
 <div class="container">
-  <div class="list-group">
-    {{#each content}}
-      {{#link-to 'account' this class="list-group-item account"}}
-        {{name}}
-        <div class="pull-right amount">
-          {{balance}}
-        </div>
-      {{/link-to}}
-    {{/each}}
-  </div>
-  <p class="footer">
-    {{link-to "help" "help"}}
-  </p>
+  {{#if content}}
+    <div class="list-group">
+      {{#each content}}
+        {{#link-to 'account' this class="list-group-item account"}}
+          {{name}}
+          <div class="pull-right amount">
+            {{balance}}
+          </div>
+        {{/link-to}}
+      {{/each}}
+    </div>
+    <p class="footer">
+      {{link-to "help" "help"}}
+    </p>
+  {{else}}
+    {{render "help-content"}}
+  {{/if}}
 </div>
