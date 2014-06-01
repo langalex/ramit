@@ -61,3 +61,7 @@ a {
   padding-left: 0;
   padding-right: 0;
 }
+
+a.list-group-item:hover, a.list-group-item:active {
+  background-color: white;
+}
