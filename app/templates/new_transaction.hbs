@@ -3,12 +3,12 @@
   <form role="form" {{action "createTransaction" on="submit"}}>
     <fieldset>
       <div class="form-group">
-        <label for="description">Description</label>
-        {{input value=description required="required" class="form-control" id="description"  type="text"}}
-      </div>
-      <div class="form-group">
         <label for="amount">Amount</label>
         {{input value=amount required="required" class="form-control" id="amount" type="number" step="1"}}
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        {{input value=description class="form-control" id="description" type="text"}}
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary form-control"><span class="glyphicon glyphicon-plus"></span> Add Transaction</button>
