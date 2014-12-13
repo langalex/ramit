@@ -9,7 +9,10 @@
     "DS": true,
     "$": true,
     "ENV": true,
-    "module": true
+    "module": true,
+    "RemoteStorage": true,
+    "remoteStorage": true,
+    "_": true
   },
   "node" : false,
   "browser" : false,

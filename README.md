@@ -12,7 +12,7 @@ The offical version is hosted at http://ramit.5apps.com.
 
 ### Deployment
 
-Build the app with `ember build`. Deploy the `dist` directory:
+Build the app with `ember build --environment production`. Deploy the `dist` directory:
 
     git subtree push --prefix dist <deploy remote> master
 
