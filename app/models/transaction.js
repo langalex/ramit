@@ -3,11 +3,13 @@ var Transaction = Ember.Object.extend({
     var transaction = this;
     return remoteStorage.ramit.addTransaction(this.get('account.id'), this.get('description'),
       this.get('amount')).then(function(data) {
-        transaction.set('id', data.id);
+        transaction.setProperties(data);
+        Transaction.all.pushObject(transaction);
     });
   },
   delete: function() {
-    remoteStorage.ramit.removeTransaction(this.get('account_id'), this.get('id'));
+    remoteStorage.ramit.removeTransaction(this.get('id'));
+    Transaction.all.removeObject(this);
   }
 });
 Transaction.reopenClass({

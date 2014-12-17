@@ -15,11 +15,13 @@ var Account = Ember.Object.extend({
   save: function() {
     var account = this;
     return remoteStorage.ramit.addAccount(this.get('name')).then(function(data) {
-      account.set('id', data.id);
+      account.setProperties(data);
+      Account.all.pushObject(account);
     });
   },
   delete: function() {
     remoteStorage.ramit.removeAccount(this.get('id'));
+    Account.all.removeObject(this);
   }
 });
 Account.reopenClass({

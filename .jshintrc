@@ -12,7 +12,8 @@
     "module": true,
     "RemoteStorage": true,
     "remoteStorage": true,
-    "_": true
+    "_": true,
+    "console": true
   },
   "node" : false,
   "browser" : false,

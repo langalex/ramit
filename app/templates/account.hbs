@@ -15,7 +15,11 @@
       <div class="transactions">
         {{#each sortedTransactions}}
           {{#link-to 'transaction' this class="list-group-item transaction"}}
-            {{description}}
+            {{#if description}}
+              {{description}}
+            {{else}}
+              -
+            {{/if}}
             <div class="amount pull-right">
               {{amount}}
             </div>
