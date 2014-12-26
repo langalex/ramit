@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Transaction from './transaction';
 
 var Account = Ember.Object.extend({

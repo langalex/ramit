@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Transaction from '../models/transaction';
 
 export default Ember.Controller.extend({

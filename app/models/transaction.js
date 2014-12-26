@@ -1,3 +1,5 @@
+import Ember from 'ember';
+
 var Transaction = Ember.Object.extend({
   save: function() {
     var transaction = this;

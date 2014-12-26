@@ -75,7 +75,7 @@ export default function() {
           var transaction = {
             id: id,
             account_id: accountId,
-            description: description,
+            description: description || '',
             amount: amount,
             date: new Date().getTime()
           };

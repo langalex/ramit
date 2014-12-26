@@ -1,13 +1,19 @@
-// module("managing transactions", {
-//   setup: function() {
-//     Ramit.Account.FIXTURES.push({id: 'test-account', name: 'test account', transactions: []});
-//     Ramit.reset();
-//   },
-//
-//   teardown: function() {
-//     Ramit.Account.FIXTURES = [];
-//   }
-// });
+import startApp from '../helpers/start-app';
+
+var App;
+
+module("managing transactions", {
+  setup: function() {
+    App = startApp();
+    // Ramit.Account.FIXTURES.push({id: 'test-account', name: 'test account', transactions: []});
+    // Ramit.reset();
+  },
+
+  teardown: function() {
+    // Ramit.Account.FIXTURES = [];
+    App.reset();
+  }
+});
 //
 // test("add transactions", function(assert) {
 //   visit('/account/test-account');
