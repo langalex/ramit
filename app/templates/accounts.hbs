@@ -6,11 +6,11 @@
 <div class="container">
   {{#if content}}
     <div class="list-group">
-      {{#each arrangedContent}}
-        {{#link-to 'account' this class="list-group-item account"}}
-          {{name}}
+      {{#each account in arrangedContent}}
+        {{#link-to 'account' account class="list-group-item account"}}
+          {{account.name}}
           <div class="pull-right amount">
-            {{balance}}
+            {{account.balance}}
           </div>
         {{/link-to}}
       {{/each}}

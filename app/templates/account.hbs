@@ -13,15 +13,15 @@
         <strong class="pull-right">{{model.balance}}</strong>
       </div>
       <div class="transactions">
-        {{#each sortedTransactions}}
-          {{#link-to 'transaction' this class="list-group-item transaction"}}
-            {{#if description}}
-              {{description}}
+        {{#each transaction in sortedTransactions}}
+          {{#link-to 'transaction' transaction class="list-group-item transaction"}}
+            {{#if transaction.description}}
+              {{transaction.description}}
             {{else}}
               -
             {{/if}}
             <div class="amount pull-right">
-              {{amount}}
+              {{transaction.amount}}
             </div>
           {{/link-to}}
         {{/each}}
