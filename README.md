@@ -8,7 +8,7 @@ It is based on the idea that for each area of spending you preload an account wi
 
 This is a standalone, offline HTML5 app, just open `index.html` in a browser.
 
-The offical version is hosted at http://ramit.5apps.com.
+The official version is hosted at http://ramit.5apps.com.
 
 ### Deployment
 
