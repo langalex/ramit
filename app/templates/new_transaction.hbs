@@ -1,18 +1,10 @@
 {{nav-bar title="Add Transaction" back-route="account" back-model=model}}
-<div class="container">
+{{#paper-content class="md-padding"}}
   <form role="form" {{action "createTransaction" on="submit"}}>
-    <fieldset>
-      <div class="form-group">
-        <label for="amount">Amount</label>
-        {{input value=amount required="required" class="form-control" id="amount" type="number" step="1"}}
-      </div>
-      <div class="form-group">
-        <label for="description">Description</label>
-        {{input value=description class="form-control" id="description" type="text"}}
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary form-control"><span class="glyphicon glyphicon-plus"></span> Add Transaction</button>
-      </div>
-    </fieldset>
+    {{paper-input label="Amount" value=amount required=true id="amount" type="number" attr-step="1"}}
+    {{paper-input label="Description" value=description id="description" type="text"}}
+    {{#paper-button type="submit" primary=true raised=true}}
+      {{paper-icon icon="add"}} Add Transaction
+    {{/paper-button}}
   </form>
-</div>
+{{/paper-content}}

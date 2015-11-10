@@ -1,23 +1,18 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="navbar-header">
-    <div class="navbar-brand">
-      <div class="navbar-title">
-        <div class="title-link">
-          {{yield}}
-          {{#if back-route}}
-            {{#if back-model}}
-              {{#link-to back-route back-model}}
-                <span class="fa fa-chevron-left"></span>
-              {{/link-to}}
-            {{else}}
-              {{#link-to back-route}}
-                <span class="fa fa-chevron-left"></span>
-              {{/link-to}}
-            {{/if}}
-          {{/if}}
-        </div>
-        {{title}}
-      </div>
-    </div>
+{{#paper-toolbar}}
+  <div class="md-toolbar-tools">
+    {{yield}}
+    {{#if back-route}}
+      {{#if back-model}}
+        {{#link-to back-route back-model}}
+          {{#paper-button}}{{paper-icon icon="arrow-back"}}{{/paper-button}}
+        {{/link-to}}
+      {{else}}
+        {{#link-to back-route}}
+          {{#paper-button}}{{paper-icon icon="arrow-back"}}{{/paper-button}}
+        {{/link-to}}
+      {{/if}}
+    {{/if}}
+    {{title}}
+    {{#link-to "help"}}{{#paper-button}}Help{{/paper-button}}{{/link-to}}
   </div>
-</nav>
+{{/paper-toolbar}}

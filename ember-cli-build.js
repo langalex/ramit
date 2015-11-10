@@ -9,13 +9,17 @@ module.exports = function(defaults) {
   app.import(app.bowerDirectory + '/fastclick/fastclick-1.0.6/lib/fastclick.js');
   app.import(app.bowerDirectory + '/remotestorage/release/0.11.2/remotestorage.js');
 
-  app.import(app.bowerDirectory + '/bootstrap/dist/css/bootstrap.css');
-  app.import(app.bowerDirectory + '/font-awesome/css/font-awesome.css');
-  app.import(app.bowerDirectory + '/font-awesome/fonts/fontawesome-webfont.eot');
-  app.import(app.bowerDirectory + '/font-awesome/fonts/fontawesome-webfont.svg');
-  app.import(app.bowerDirectory + '/font-awesome/fonts/fontawesome-webfont.ttf');
-  app.import(app.bowerDirectory + '/font-awesome/fonts/fontawesome-webfont.woff');
-  app.import(app.bowerDirectory + '/font-awesome/fonts/FontAwesome.otf');
+  app.import('vendor/fonts/RobotoDraft.woff2');
+  app.import('vendor/fonts/RobotoDraft.woff');
+  app.import('vendor/fonts/RobotoDraft-Medium.woff2');
+  app.import('vendor/fonts/RobotoDraft-Medium.woff');
+  app.import('vendor/fonts/RobotoDraft-Bold.woff2');
+  app.import('vendor/fonts/RobotoDraft-Bold.woff');
+  app.import('vendor/fonts/RobotoDraft-Italic.woff2');
+  app.import('vendor/fonts/RobotoDraft-Italic.woff');
+  app.import('vendor/fonts/MaterialIcons-Regular.woff2');
+  app.import('vendor/fonts/MaterialIcons-Regular.woff');
+  app.import('vendor/fonts/MaterialIcons-Regular.ttf');
 
   // Use `app.import` to add additional libraries to the generated
   // output files.

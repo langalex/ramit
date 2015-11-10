@@ -1,22 +1,15 @@
 {{nav-bar title="Transaction" back-route="account" back-model=model.account_id}}
-<div class="container">
-  <div class="list-group">
-    <div class="list-group-item">
+{{#paper-content class="md-padding"}}
+  <dl>
+    {{#if model.description}}
       <dt>Description</dt>
       <dd>{{model.description}}</dd>
-    </div>
-    <div class="list-group-item">
-      <dt>Amount</dt>
-      <dd>{{model.amount}}</dd>
-    </div>
-    <div class="list-group-item">
-      <dt>Date</dt>
-      <dd>{{format-date model.date}}</dd>
-    </div>
-  </div>
+    {{/if}}
+    <dt>Amount</dt>
+    <dd>{{model.amount}}</dd>
+    <dt>Date</dt>
+    <dd>{{format-date model.date}}</dd>
+  </dl>
 
-  <div class="pull-right">
-    {{remove-button remove-label="Remove Transaction..." confirm-label="Confirm Remove Transaction" action="deleteTransaction"}}
-  </div>
-  <p class="clearfix"></p>
-</div>
+  {{remove-button remove-label="Remove Transaction…" confirm-label="Confirm Remove Transaction" action="deleteTransaction"}}
+{{/paper-content}}

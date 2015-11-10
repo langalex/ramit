@@ -1,3 +1,5 @@
+/* globals remoteStorage */
+
 import Ember from 'ember';
 import Transaction from './transaction';
 
@@ -6,10 +8,10 @@ var Account = Ember.Object.extend({
     return this.get('transactions').reduce(function(sum, t) {
       return sum + t.get('amount');
     }, 0);
-  }.property('transactions.@each'),
+  }.property('transactions.@each.amount'),
   transactions: function() {
     return this.get('all_transactions').filterBy('account_id', this.get('id'));
-  }.property('account_id', 'all_transactions.@each'),
+  }.property('account_id', 'all_transactions.@each.account_id'),
   all_transactions: function() {
     return Transaction.all;
   }.property(),

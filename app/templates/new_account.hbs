@@ -1,11 +1,10 @@
 {{nav-bar title="Add Account" back-route="accounts"}}
-<div class="container">
+{{#paper-content class="md-padding"}}
   <form {{action "createAccount" on="submit"}}>
-    <div class="form-group">
-      {{input value=name required=true class="form-control" placeholder="choose an account name, e.g. eating out" name="name"}}
-    </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary form-control"><span class="glyphicon glyphicon-plus"></span> Add Account</button>
-    </div>
+    {{paper-input value=name required=true placeholder="choose an account name, e.g. eating out" name="name"}}
+    {{#paper-button type="submit" primary=true raised=true}}
+      {{paper-icon icon="add"}}
+      Add Account
+    {{/paper-button}}
   </form>
-</div>
+{{/paper-content}}

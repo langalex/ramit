@@ -1,67 +1,54 @@
+@import 'ember-paper';
+
 #remotestorage-widget {
   top: 5px !important;
 }
 
-.container {
-  padding-top: 60px;
+button a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
-.btn-primary, .btn-primary:hover, .btn-primary:active {
-  background: rgb(144, 63, 43);
-  border-color: rgb(124, 43, 23);
+.md-list-item-inner a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
-a {
-  color: rgb(144, 63, 43);
+@font-face {
+  font-family: 'RobotoDraft';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/RobotoDraft.woff2) format('woff2'), url(../fonts/RobotoDraft.woff) format('woff');
 }
 
-.navbar-default {
-  background-color: white;
-  border: none;
+@font-face {
+  font-family: 'RobotoDraft';
+  font-style: normal;
+  font-weight: 500;
+  src: url(../fonts/RobotoDraft-Medium.woff2) format('woff2'), url(../fonts/RobotoDraft-Medium.woff) format('woff');
 }
 
-.navbar-brand {
-  padding: 0;
+@font-face {
+  font-family: 'RobotoDraft';
+  font-style: normal;
+  font-weight: 700;
+  src: url(../fonts/RobotoDraft-Bold.woff2) format('woff2'), url(../fonts/RobotoDraft-Bold.woff) format('woff');
 }
 
-.navbar {
-  a, a:hover, a:active {
-    color: inherit;
-    text-decoration: none;
-    padding: 15px;
-  }
+@font-face {
+  font-family: 'RobotoDraft';
+  font-style: italic;
+  font-weight: 400;
+  src: url(../fonts/RobotoDraft-Italic.woff2) format('woff2'), url(../fonts/RobotoDraft-Italic.woff) format('woff');
 }
 
-.navbar-header, .navbar-brand {
-  width: 100%;
-}
-
-.navbar-title {
-  width: 100%;
-  text-align: center;
-  padding: 15px 0;
-}
-
-.navbar-title .title-link {
-  position: absolute;
-  top: 15px;
-  left: 0;
-}
-
-.footer {
-  text-align: center;
-  font-size: 90%;
-}
-
-.list-group-item {
-  border-width: 0;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-a.list-group-item:hover, a.list-group-item:active,
-  a.list-group-item.active, a.list-group-item.active:focus,
-  a.list-group-item.active:hover {
-  background-color: white;
-  color: #555;
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/MaterialIcons-Regular.woff2) format('woff2'),
+       url(../fonts/MaterialIcons-Regular.woff) format('woff'),
+       url(../fonts/MaterialIcons-Regular.ttf) format('truetype');
 }
