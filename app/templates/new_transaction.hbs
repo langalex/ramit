@@ -3,7 +3,7 @@
   <form role="form" {{action "createTransaction" on="submit"}}>
     {{paper-input label="Amount" value=amount required=true id="amount" type="number" attr-step="1"}}
     {{paper-input label="Description" value=description id="description" type="text"}}
-    {{#paper-button type="submit" primary=true raised=true}}
+    {{#paper-button noink=true type="submit" primary=true raised=true}}
       {{paper-icon icon="add"}} Add Transaction
     {{/paper-button}}
   </form>

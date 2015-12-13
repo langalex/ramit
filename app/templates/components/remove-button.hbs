@@ -1,6 +1,6 @@
 {{#if showConfirm}}
-  {{#paper-button raised=true action="toggleConfirm"}}Cancel{{/paper-button}}
-  {{#paper-button raised=true action="sendDelete" warn=true}}{{confirm-label}}{{/paper-button}}
+  {{#paper-button noink=true raised=true action="toggleConfirm"}}Cancel{{/paper-button}}
+  {{#paper-button noink=true raised=true action="sendDelete" warn=true}}{{confirm-label}}{{/paper-button}}
 {{else}}
-  {{#paper-button raised=true action="toggleConfirm"}}{{remove-label}}{{/paper-button}}
+  {{#paper-button noink=true raised=true action="toggleConfirm"}}{{remove-label}}{{/paper-button}}
 {{/if}}

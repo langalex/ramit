@@ -2,7 +2,7 @@
 {{#paper-content class="md-padding"}}
   {{#if sortedTransactions}}
     <p>
-      {{#paper-button raised=true}}
+      {{#paper-button noink=true raised=true}}
         {{#link-to 'new_transaction' model class="add-transaction"}}
           {{paper-icon icon="add"}}
           Add Transaction
@@ -12,7 +12,7 @@
     {{#paper-list}}
       {{#paper-item}}
         <p><strong>Balance</strong></p>
-        {{#paper-button icon-button=true}}<strong>{{model.balance}}</strong>{{/paper-button}}
+        {{#paper-button noink=true icon-button=true}}<strong>{{model.balance}}</strong>{{/paper-button}}
       {{/paper-item}}
       {{paper-divider}}
       <div class="transactions">
@@ -27,7 +27,7 @@
                 {{/if}}
               {{/link-to}}
             </p>
-            {{#paper-button icon-button=true}}
+            {{#paper-button noink=true icon-button=true}}
               {{transaction.amount}}
             {{/paper-button}}
           {{/paper-item}}
@@ -40,7 +40,7 @@
     <p>To get started with this account put some money in it.</p>
     <p>
       {{#link-to 'new_transaction' model class="add-transaction"}}
-        {{paper-button label="Add Transaction" primary=true raised=true}}
+        {{paper-button noink=true label="Add Transaction" primary=true raised=true}}
       {{/link-to}}
     </p>
   {{/if}}
