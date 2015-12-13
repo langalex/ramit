@@ -4,15 +4,15 @@
     {{#if back-route}}
       {{#if back-model}}
         {{#link-to back-route back-model}}
-          {{#paper-button noink=true}}{{paper-icon icon="arrow-back"}}{{/paper-button}}
+          {{paper-icon icon="arrow-back"}}
         {{/link-to}}
       {{else}}
         {{#link-to back-route}}
-          {{#paper-button noink=true}}{{paper-icon icon="arrow-back"}}{{/paper-button}}
+          {{paper-icon icon="arrow-back"}}
         {{/link-to}}
       {{/if}}
     {{/if}}
-    {{title}}
+    {{#paper-button noink=true}}{{title}}{{/paper-button}}
     {{#link-to "help"}}{{#paper-button noink=true}}Help{{/paper-button}}{{/link-to}}
   </div>
 {{/paper-toolbar}}
