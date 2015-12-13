@@ -7,7 +7,7 @@
   {{#if sortedAccounts}}
     {{#paper-list}}
       {{#each sortedAccounts as |account|}}
-        {{#paper-item}}
+        {{#paper-item noink=true}}
           <p>
             {{#link-to 'account' account class="list-group-item account"}}
               {{account.name}}
@@ -19,7 +19,7 @@
         {{/paper-item}}
         {{paper-divider}}
       {{/each}}
-      {{#paper-item}}
+      {{#paper-item noink=true}}
         <p>
           <strong>Total</strong>
         </p>
