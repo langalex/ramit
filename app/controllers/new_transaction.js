@@ -10,7 +10,6 @@ export default Ember.Controller.extend({
         description: this.get('description'),
         amount: parseInt(this.get('amount'), 10)});
       transaction.save();
-      this.setProperties({description: undefined, amount: undefined});
       this.transitionToRoute('account', account);
     }
   }

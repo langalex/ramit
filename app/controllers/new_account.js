@@ -7,7 +7,6 @@ export default Ember.Controller.extend({
       var controller = this;
       var account = Account.create({
         name: this.get('name')});
-      this.set('name', undefined);
       account.save().then(function() {
         controller.transitionToRoute('accounts');
       });
