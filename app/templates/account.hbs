@@ -10,14 +10,14 @@
       {{/paper-button}}
     </p>
     {{#paper-list}}
-      {{#paper-item noink=true}}
+      {{#paper-item}}
         <p><strong>Balance</strong></p>
         {{#paper-button noink=true icon-button=true}}<strong>{{model.balance}}</strong>{{/paper-button}}
       {{/paper-item}}
       {{paper-divider}}
       <div class="transactions">
         {{#each sortedTransactions as |transaction|}}
-          {{#paper-item noink=true}}
+          {{#paper-item}}
             <p>
               {{#link-to 'transaction' transaction class="list-group-item transaction"}}
                 {{#if transaction.description}}
