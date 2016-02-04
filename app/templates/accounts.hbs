@@ -1,6 +1,6 @@
 {{#nav-bar}}
   {{#link-to "new_account"}}
-    {{paper-icon icon="add"}}
+    {{#paper-button}}{{paper-icon icon="add"}}{{/paper-button}}
   {{/link-to}}
 {{/nav-bar}}
 {{#paper-content class="md-padding"}}
@@ -13,7 +13,7 @@
               {{account.name}}
             {{/link-to}}
           </p>
-          {{#paper-button noink=true icon-button=true}}
+          {{#paper-button icon-button=true}}
             {{account.balance}}
           {{/paper-button}}
         {{/paper-item}}
@@ -23,7 +23,7 @@
         <p>
           <strong>Total</strong>
         </p>
-        {{#paper-button noink=true icon-button=true}}
+        {{#paper-button icon-button=true}}
           <strong>{{totalBalance}}</strong>
         {{/paper-button}}
       {{/paper-item}}
