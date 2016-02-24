@@ -12,7 +12,7 @@
     {{#paper-list}}
       {{#paper-item}}
         <p><strong>Balance</strong></p>
-        {{#paper-button icon-button=true}}<strong>{{model.balance}}</strong>{{/paper-button}}
+        <strong>{{format-amount model.balance}}</strong>
       {{/paper-item}}
       {{paper-divider}}
       <div class="transactions">
@@ -27,9 +27,7 @@
                 {{/if}}
               {{/link-to}}
             </p>
-            {{#paper-button icon-button=true}}
-              {{transaction.amount}}
-            {{/paper-button}}
+            {{format-amount transaction.amount}}
           {{/paper-item}}
           {{paper-divider}}
         {{/each}}

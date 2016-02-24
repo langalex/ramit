@@ -13,9 +13,7 @@
               {{account.name}}
             {{/link-to}}
           </p>
-          {{#paper-button icon-button=true}}
-            {{account.balance}}
-          {{/paper-button}}
+          {{format-amount account.balance}}
         {{/paper-item}}
         {{paper-divider}}
       {{/each}}
@@ -23,9 +21,7 @@
         <p>
           <strong>Total</strong>
         </p>
-        {{#paper-button icon-button=true}}
-          <strong>{{totalBalance}}</strong>
-        {{/paper-button}}
+        <strong>{{format-amount totalBalance}}</strong>
       {{/paper-item}}
     {{/paper-list}}
   {{else}}
