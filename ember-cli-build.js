@@ -6,11 +6,12 @@ module.exports = function(defaults) {
     // Add options here
   });
 
-  app.import(app.bowerDirectory + '/fastclick/fastclick-1.0.6/lib/fastclick.js');
-  app.import(app.bowerDirectory + '/remotestorage/release/0.11.2/remotestorage.js');
+  app.import(app.bowerDirectory + '/fastclick/lib/fastclick.js');
+  // app.import('node_modules/remotestoragejs/release/stable/remotestorage.js');
   app.import(app.bowerDirectory + '/intl/dist/Intl.js');
   app.import(app.bowerDirectory + '/intl/locale-data/jsonp/en.js');
 
+  app.import('vendor/remotestorage.js'); // XXX import from node_modules doesn't work for some reason
   app.import('vendor/fonts/RobotoDraft.woff2');
   app.import('vendor/fonts/RobotoDraft.woff');
   app.import('vendor/fonts/RobotoDraft-Medium.woff2');
