@@ -1,3 +1,4 @@
+/* global RemoteStorage, remoteStorage, $ */
 export default function() {
   RemoteStorage.defineModule('ramit', function(privateClient) {
     // Define a common data type using JSON Schema

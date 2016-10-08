@@ -1,3 +1,4 @@
+/* global remoteStorage */
 import Ember from 'ember';
 
 var Transaction = Ember.Object.extend({
@@ -25,12 +26,27 @@ Transaction.reopenClass({
   }
 });
 
+const TransactionHandler = Ember.Object.extend({
+  newTransactions: Ember.computed(function() {
+    return [];
+  }),
+  newTransaction: function(transaction) {
+    this.get('newTransactions').push(transaction);
+    Ember.run.debounce(this, this.flushNewTransactions, 100);
+  },
+  flushNewTransactions() {
+    Transaction.all.pushObjects(this.get('newTransactions'));
+    this.get('newTransactions').clear();
+  }
+});
+const transactionHandler = TransactionHandler.create();
+
 remoteStorage.ramit.onAddTransaction(function(transactionData) {
   var existing = Transaction.all.find(function(a) { return a.get('id') === transactionData.id; });
   if(existing) {
     existing.setProperties(transactionData);
   } else {
-    Transaction.all.pushObject(Transaction.create(transactionData));
+    transactionHandler.newTransaction(Transaction.create(transactionData));
   }
 });
 
