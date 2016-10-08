@@ -33,6 +33,6 @@
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.3",
     "ember-paper": "0.2.9",
-    "remotestoragejs": "^0.12.1"
+    "remotestoragejs": "^0.13.0"
   }
 }
