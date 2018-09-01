@@ -1,7 +1,9 @@
 /* global remoteStorage */
-import Ember from 'ember';
+import { debounce } from '@ember/runloop';
 
-var Transaction = Ember.Object.extend({
+import EmberObject, { computed } from '@ember/object';
+
+var Transaction = EmberObject.extend({
   save: function() {
     var transaction = this;
     return remoteStorage.ramit.addTransaction(this.get('account.id'), this.get('description'),
@@ -26,13 +28,13 @@ Transaction.reopenClass({
   }
 });
 
-const TransactionHandler = Ember.Object.extend({
-  newTransactions: Ember.computed(function() {
+const TransactionHandler = EmberObject.extend({
+  newTransactions: computed(function() {
     return [];
   }),
   newTransaction: function(transaction) {
     this.get('newTransactions').push(transaction);
-    Ember.run.debounce(this, this.flushNewTransactions, 100);
+    debounce(this, this.flushNewTransactions, 100);
   },
   flushNewTransactions() {
     Transaction.all.pushObjects(this.get('newTransactions'));

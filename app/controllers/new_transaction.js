@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 import Transaction from '../models/transaction';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   actions: {
     createTransaction: function() {
       var account = this.get('model');

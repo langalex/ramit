@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import Account from '../models/account';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model: function(params) {
     return Account.find(params.account_id);
   }

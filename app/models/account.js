@@ -1,9 +1,9 @@
 /* globals remoteStorage */
 
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 import Transaction from './transaction';
 
-var Account = Ember.Object.extend({
+var Account = EmberObject.extend({
   balance: function() {
     return this.get('transactions').reduce(function(sum, t) {
       return sum + t.get('amount');

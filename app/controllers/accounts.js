@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { mapBy, sum, sort } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   sortProperties: ['name'],
-  balances: Ember.computed.mapBy('model', 'balance'),
-  totalBalance: Ember.computed.sum('balances'),
-  sortedAccounts: Ember.computed.sort('model', 'sortProperties')
+  balances: mapBy('model', 'balance'),
+  totalBalance: sum('balances'),
+  sortedAccounts: sort('model', 'sortProperties')
 });

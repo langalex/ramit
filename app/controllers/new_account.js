@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 import Account from "../models/account";
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   actions: {
     createAccount: function() {
       var controller = this;
