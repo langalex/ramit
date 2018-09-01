@@ -1,18 +1,16 @@
 /* global remoteStorage */
 
-import Ember from 'ember';
-import Resolver from 'ember/resolver';
-import loadInitializers from 'ember/load-initializers';
+import Application from '@ember/application';
+import Resolver from './resolver';
+import loadInitializers from 'ember-load-initializers';
 import config from './config/environment';
 import initStorage from './storage';
 
-Ember.MODEL_FACTORY_INJECTIONS = true;
-
 initStorage();
-var App = Ember.Application.extend({
+const App = Application.extend({
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
-  Resolver: Resolver
+  Resolver
 });
 
 loadInitializers(App, config.modulePrefix);

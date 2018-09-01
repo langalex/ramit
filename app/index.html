@@ -15,24 +15,19 @@
     <link rel="apple-touch-startup-image" href="images/splash-1096.png" media="(max-device-width : 548px) and (-webkit-min-device-pixel-ratio : 2)">
 
 
-    {{content-for 'head'}}
+    {{content-for "head"}}
 
-    <link rel="stylesheet" href="assets/vendor.css">
-    <link rel="stylesheet" href="assets/ramit.css">
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/ramit.css">
 
-    {{content-for 'head-footer'}}
+    {{content-for "head-footer"}}
   </head>
   <body>
-    {{content-for 'body'}}
+    {{content-for "body"}}
 
-    <script src="assets/vendor.js"></script>
-    <script src="assets/ramit.js"></script>
-    <script>
-      window.addEventListener('load', function() {
-        FastClick.attach(document.body);
-      }, false);
-    </script>
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/ramit.js"></script>
 
-    {{content-for 'body-footer'}}
+    {{content-for "body-footer"}}
   </body>
 </html>
