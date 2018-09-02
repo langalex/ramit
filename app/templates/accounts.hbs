@@ -3,6 +3,7 @@
     {{#paper-button}}{{paper-icon icon="add"}}{{/paper-button}}
   {{/link-to}}
 {{/nav-bar}}
+
 {{#paper-content class="md-padding"}}
   {{#if sortedAccounts}}
     {{#paper-list}}
@@ -25,6 +26,6 @@
       {{/paper-item}}
     {{/paper-list}}
   {{else}}
-    {{render "help-content"}}
+    {{help-content}}
   {{/if}}
 {{/paper-content}}

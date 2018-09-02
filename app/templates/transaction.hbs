@@ -11,5 +11,6 @@
     <dd>{{format-date model.date}}</dd>
   </dl>
 
-  {{remove-button remove-label="Remove Transaction…" confirm-label="Confirm Remove Transaction" action="deleteTransaction"}}
+  {{remove-button remove-label="Remove Transaction…" confirm-label="Confirm Remove Transaction"
+    deleteAction=(action "deleteTransaction")}}
 {{/paper-content}}

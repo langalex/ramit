@@ -1,10 +1,14 @@
 {{nav-bar title="Add Transaction" back-route="account" back-model=model}}
 {{#paper-content class="md-padding"}}
   <form role="form" {{action "createTransaction" on="submit"}}>
-    {{paper-input label="Amount" value=amount required=true id="amount" type="number" attr-step="1"}}
-    {{paper-input label="Description" value=description id="description" type="text"}}
-    {{#paper-button type="submit" primary=true raised=true}}
-      {{paper-icon icon="add"}} Add Transaction
-    {{/paper-button}}
+    <div class="layout-column flex">
+      {{paper-input label="Amount" value=amount required=true id="amount"
+        type="number" attr-step="1" onChange=(action "updateAmount")}}
+      {{paper-input label="Description" value=description id="description"
+        type="text" onChange=(action "updateDescription")}}
+      {{#paper-button type="submit" primary=true raised=true}}
+        {{paper-icon icon="add"}} Add Transaction
+      {{/paper-button}}
+    </div>
   </form>
 {{/paper-content}}

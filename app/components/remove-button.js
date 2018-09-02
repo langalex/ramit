@@ -7,7 +7,7 @@ export default Component.extend({
       this.toggleProperty('showConfirm');
     },
     sendDelete: function() {
-      this.sendAction();
+      this.get('deleteAction')();
     }
   }
 });

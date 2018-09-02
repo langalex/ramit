@@ -3,7 +3,13 @@ import Transaction from '../models/transaction';
 
 export default Controller.extend({
   actions: {
-    createTransaction: function() {
+    updateAmount(value) {
+      this.set('amount', value);
+    },
+    updateDescription(value) {
+      this.set('description', value);
+    },
+    createTransaction() {
       var account = this.get('model');
       var transaction = Transaction.create({
         account: account,
