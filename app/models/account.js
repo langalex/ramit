@@ -2,19 +2,20 @@
 
 import EmberObject from '@ember/object';
 import Transaction from './transaction';
+import { computed } from '@ember/object';
 
 var Account = EmberObject.extend({
-  balance: function() {
+  balance: computed('transactions.@each.amount', function() {
     return this.get('transactions').reduce(function(sum, t) {
       return sum + t.get('amount');
     }, 0);
-  }.property('transactions.@each.amount'),
-  transactions: function() {
+  }),
+  transactions: computed('account_id', 'all_transactions.@each.account_id', function() {
     return this.get('all_transactions').filterBy('account_id', this.get('id'));
-  }.property('account_id', 'all_transactions.@each.account_id'),
-  all_transactions: function() {
+  }),
+  all_transactions: computed(function() {
     return Transaction.all;
-  }.property(),
+  }),
   save: function() {
     var account = this;
     return remoteStorage.ramit.addAccount(this.get('name')).then(function(data) {

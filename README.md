@@ -14,7 +14,7 @@ The official version is hosted at http://ramit.5apps.com.
 
 Build the app with `ember build --environment production`. Deploy the `dist` directory:
 
-    git subtree push --prefix dist <deploy remote> master
+    git push <deploy remote> `git subtree split --prefix dist master`:master --force
 
 ### Acknowledgements
 

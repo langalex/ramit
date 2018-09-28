@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
   actions: {
@@ -7,7 +8,7 @@ export default Controller.extend({
       this.transitionToRoute('accounts');
     }
   },
-  sortedTransactions: function() {
+  sortedTransactions: computed('model.transactions.@each.date', function() {
     return this.get('model.transactions').sortBy('date').reverse();
-  }.property('model.transactions.@each.date')
+  })
 });
