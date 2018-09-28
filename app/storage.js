@@ -58,8 +58,9 @@ export default function() {
         },
         onAddAccount: function(callback) {
           privateClient.on('change', function(e) {
-            if(e.oldValue === undefined && e.newValue['@context'] === 'http://remotestorage.io/spec/modules/ramit/account') {
-              callback(e.newValue);
+            const newValue = typeof e.newValue === 'string' ? JSON.parse(e.newValue) : e.newValue;
+            if(e.oldValue === undefined && newValue['@context'] === 'http://remotestorage.io/spec/modules/ramit/account') {
+              callback(newValue);
             }
           });
         },
@@ -91,8 +92,9 @@ export default function() {
         },
         onAddTransaction: function(callback) {
           privateClient.on('change', function(e) {
-            if(e.oldValue === undefined && e.newValue['@context'] === 'http://remotestorage.io/spec/modules/ramit/transaction') {
-              callback(e.newValue);
+            const newValue = typeof e.newValue === 'string' ? JSON.parse(e.newValue) : e.newValue;
+            if(e.oldValue === undefined && newValue['@context'] === 'http://remotestorage.io/spec/modules/ramit/transaction') {
+              callback(newValue);
             }
           });
         },
