@@ -1,3 +1,9 @@
+# Archived
+
+This software is now archived and unmaintained.
+
+See https://github.com/langalex/ramit2 for version 2, which is a complete rewrite using Svete and PouchDB.
+
 ### About
 
 Ramit is a personal accounting app inspried by the book 'I will teach you to be rich' by Ramit Sethi.
